@@ -1,0 +1,17 @@
+{
+  "name": "lemgo-invitation-vercel",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Существующее приглашение в Лемго с PostgreSQL и защищённым кабинетом",
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "check": "node scripts/check.cjs",
+    "dev": "node --env-file-if-exists=.env scripts/dev.cjs",
+    "migrate": "node --env-file-if-exists=.env scripts/migrate.cjs",
+    "admin:create": "node --env-file-if-exists=.env scripts/create-admin.cjs",
+    "deploy": "npx vercel --prod"
+  },
+  "dependencies": { "pg": "^8.16.3" },
+  "devDependencies": { "@electric-sql/pglite": "^0.3.10", "jsdom": "^26.1.0" },
+  "engines": { "node": "22.x" }
+}

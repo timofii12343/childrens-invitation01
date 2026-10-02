@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Всему своё время · Подростковое общение</title>
+<meta name="description" content="Подростковое общение в Лемго. 10.10.26, 11:00–17:00. Программа встречи и подтверждение участия.">
+<meta name="theme-color" content="#f8f1e7">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="style.css"><script src="app.js" defer></script>
+</head>
+<body>
+<main class="invitation">
+<header class="hero">
+<div class="hero-text">
+<p class="eyebrow">ПОДРОСТКОВОЕ<br>ОБЩЕНИЕ</p>
+<h1>Всему<br><em>своё время</em></h1>
+<p class="verse">ЭКЛ 3.1</p>
+</div>
+<figure><img src="assets/hourglass.png" alt="Песочные часы и золотые осенние листья" width="1536" height="1024"></figure>
+</header>
+<section class="program" aria-labelledby="program-title">
+<div class="section-caption"><span></span><h2 id="program-title">Программа общения</h2><span></span></div>
+<ol class="program-list">
+<li><span class="number" aria-hidden="true">01</span><div><h3>Понятие времени</h3></div></li>
+<li><span class="number" aria-hidden="true">02</span><div><h3>Время возлюбить Бога</h3><p>Покаяние, возрождение, крещение</p></div></li>
+<li><span class="number" aria-hidden="true">03</span><div><h3>Время любить церковь</h3></div></li>
+<li><span class="number" aria-hidden="true">04</span><div><h3>Время любить — влюбляться</h3></div></li>
+</ol>
+<p class="game">Библейская игра</p>
+</section>
+<section class="details" aria-label="Дата, время и место встречи">
+<p class="date">Лемго <span>·</span> <time datetime="2026-10-10">10.10.26</time></p>
+<div class="times"><p>Начало богослужения <strong>11:00</strong></p><p>Окончание <strong>17:00</strong></p></div>
+<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Am+Stiftsland+19%2C+32657+Lemgo" target="_blank" rel="noopener noreferrer">Am Stiftsland 19, 32657 Lemgo<small>Открыть на карте</small></a>
+</section>
+<section class="rsvp" aria-labelledby="rsvp-title">
+<p class="overline">ДО ВСТРЕЧИ В ЛЕМГО</p><h2 id="rsvp-title">Вы придёте?</h2>
+<form id="rsvp-form">
+<div class="form-grid"><label>Церковь<input id="church" name="church" autocomplete="organization" maxlength="100" required placeholder="Название вашей церкви"></label><label>Количество детей<input id="children" name="children" type="number" inputmode="numeric" min="1" max="1000" step="1" required placeholder="Например, 2"></label></div>
+<div class="honeypot" aria-hidden="true"><label>Сайт<input name="website" tabindex="-1" autocomplete="off"></label></div>
+<button type="submit" id="rsvp-button">Мы придём</button>
+<p class="privacy">Церковь, количество детей и ваше участие увидят только организаторы встречи.</p>
+<p id="rsvp-status" class="status" role="status" aria-live="polite"></p>
+</form>
+</section>
+<footer><button type="button" class="text-button" id="open-admin">Вход для администраторов</button></footer>
+</main>
+
+<dialog id="participation-dialog" aria-labelledby="participation-title">
+<div class="dialog-top"><h2 id="participation-title">Будет ли от вас участие?</h2></div>
+<form id="participation-form"><label>Наше участие<textarea id="participation" name="participation" maxlength="5000" rows="6" placeholder="Расскажите о вашем участии"></textarea></label>
+<div class="confirm-actions"><button type="submit" id="save-participation">Спасибо за участие</button><button type="button" class="secondary" id="skip-participation">Пропустить</button></div>
+<p class="status" id="participation-status" role="status" aria-live="polite"></p></form>
+</dialog>
+
+<dialog id="admin-dialog" aria-labelledby="admin-title">
+<div class="dialog-top"><h2 id="admin-title">Вход для администраторов</h2><button class="icon-button" type="button" id="close-admin" aria-label="Закрыть">×</button></div>
+<form id="login-form"><label>Email<input id="email" type="email" autocomplete="username" required></label><label>Пароль<input id="password" type="password" autocomplete="current-password" required></label><button type="submit" id="login-button">Войти</button><p class="status" id="login-status" role="status"></p></form>
+<div id="dashboard" hidden>
+<div class="dashboard-top"><p id="admin-name"></p><button class="text-button" type="button" id="logout">Выйти</button></div>
+<div class="totals"><div><strong id="total-children">0</strong><span>детей</span></div><div><strong id="total-requests">0</strong><span>заявок</span></div><div><strong id="total-participation">0</strong><span>с участием</span></div></div>
+<div class="dashboard-actions"><h3>Заявки участников</h3><button class="text-button" type="button" id="refresh">Обновить</button></div>
+<p class="status" id="dashboard-status" role="status"></p>
+<p class="update-note" id="last-updated"></p>
+<div class="table-scroll"><table><caption class="sr-only">Заявки на подростковое общение</caption><thead><tr><th scope="col">Церковь</th><th scope="col">Детей</th><th scope="col">Наше участие</th><th scope="col">Дата подачи</th><th scope="col">Действия</th></tr></thead><tbody id="requests"></tbody></table></div>
+<p class="empty" id="empty" hidden>Пока нет заявок.</p>
+</div>
+</dialog>
+<dialog id="edit-dialog" aria-labelledby="edit-title"><div class="dialog-top"><h2 id="edit-title">Исправить заявку</h2><button class="icon-button" type="button" id="close-edit" aria-label="Закрыть">×</button></div><form id="edit-form"><label>Церковь<input id="edit-church" maxlength="100" required></label><label>Количество детей<input id="edit-children" type="number" min="1" max="1000" step="1" required></label><label>Наше участие<textarea id="edit-participation" maxlength="5000" rows="5"></textarea></label><button id="save-edit" type="submit">Сохранить</button><p class="status" id="edit-status" role="status"></p></form></dialog>
+<dialog id="delete-dialog" aria-labelledby="delete-title"><div class="dialog-top"><h2 id="delete-title">Удалить заявку?</h2></div><p id="delete-description"></p><p class="privacy">Заявка будет удалена из списка, количество детей пересчитается.</p><div class="confirm-actions"><button type="button" class="secondary" id="cancel-delete">Отмена</button><button type="button" id="confirm-delete">Удалить</button></div><p class="status" id="delete-status" role="status"></p></dialog>
+</body>
+</html>
